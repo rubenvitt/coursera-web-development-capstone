@@ -1,16 +1,20 @@
 import React, {useState} from 'react';
+import {MenuList} from "../data/menu.component";
+import {useRouter} from "next/router";
 
 
 export const LayoutComponent = ({children, header}) => {
-    const [menuOpen, setMenuOpen] = useState(true);
+    const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
     }
 
+    const route = useRouter().pathname;
+
     return (
         <div className="h-screen flex overflow-hidden bg-gray-100">
             <div className="md:hidden">
-                <div className="fixed inset-0 flex z-40">
+                <div className={`${menuOpen ? '' : 'hidden'} fixed inset-0 flex z-40`}>
                     {/*<!--
                       Off-canvas menu overlay, show/hide based on off-canvas menu state.
 
@@ -21,7 +25,7 @@ export const LayoutComponent = ({children, header}) => {
                         From: "opacity-100"
                         To: "opacity-0"
                     -->*/}
-                    <div className={`${menuOpen ? '' : 'hidden'} fixed inset-0`}>
+                    <div onClick={() => toggleMenu()} className={`fixed inset-0`}>
                         <div className="absolute inset-0 bg-gray-600 opacity-75"/>
                     </div>
                     {/*<!--
@@ -35,7 +39,7 @@ export const LayoutComponent = ({children, header}) => {
                         To: "-translate-x-full"
                     -->*/}
                     <div
-                        className={`${menuOpen ? '' : 'hidden'} relative flex-1 flex flex-col max-w-xs w-full bg-indigo-800`}>
+                        className={`${menuOpen ? '' : 'hidden'} relative flex-1 flex flex-col max-w-xs w-full bg-orange-800`}>
                         <div className="absolute top-0 right-0 -mr-14 p-1">
                             <button onClick={() => toggleMenu()}
                                     className="flex items-center justify-center h-12 w-12 rounded-full focus:outline-none focus:bg-gray-600"
@@ -50,90 +54,37 @@ export const LayoutComponent = ({children, header}) => {
                         <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                             <div className="flex-shrink-0 flex items-center px-4">
                                 <img className="h-8 w-auto"
-                                     src="https://tailwindui.com/img/logos/workflow-logo-on-brand.svg" alt="Workflow"/>
+                                     src="https://dev.rubeen.dev/assets/images/rubeen.png" alt="Rubeen"/>
                             </div>
                             <nav className="mt-5 px-2 space-y-1">
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-white bg-indigo-900 focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                                    </svg>
-                                    Dashboard
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                    </svg>
-                                    Team
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                                    </svg>
-                                    Projects
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                    Calendar
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-                                    </svg>
-                                    Documents
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md text-indigo-300 hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-4 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                    </svg>
-                                    Reports
-                                </a>
+                                {
+                                    MenuList.map(item => {
+                                        return <a href={item.url}
+                                                  className={`group flex items-center px-2 py-2 text-base leading-6 font-medium rounded-md ${(item.url === route) ? 'text-white bg-orange-900' : 'text-orange-300 hover:text-white focus:text-white hover:bg-orange-700'} focus:bg-orange-700 transition ease-in-out duration-150`}>
+                                            <svg width="24" height="24" viewBox="0 0 24 24"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 data-reactroot="" stroke="currentColor"
+                                                 className="mr-4 h-6 w-6 text-orange-400 group-hover:text-orange-300 group-focus:text-orange-300 transition ease-in-out duration-150">{item.icon}</svg>
+                                            {item.name}
+                                        </a>
+                                    })
+                                }
                             </nav>
                         </div>
-                        <div className="flex-shrink-0 flex border-t border-indigo-700 p-4">
-                            <a href="#" className="flex-shrink-0 group block focus:outline-none">
+                        <div className="flex-shrink-0 flex border-t border-orange-700 p-4">
+                            <a href="https://github.com/rubenvitt" className="flex-shrink-0 group block focus:outline-none">
                                 <div className="flex items-center">
                                     <div>
                                         <img className="inline-block h-10 w-10 rounded-full"
-                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                             src="https://dev.rubeen.dev/assets/images/profile.jpg"
                                              alt=""/>
                                     </div>
                                     <div className="ml-3">
                                         <p className="text-base leading-6 font-medium text-white">
-                                            Tom Cook
+                                            Ruben Vitt
                                         </p>
-                                        <p className="text-sm leading-5 font-medium text-indigo-300 group-hover:text-indigo-100 group-focus:underline transition ease-in-out duration-150">
-                                            View profile
+                                        <p className="text-sm leading-5 font-medium text-orange-300 group-hover:text-orange-100 group-focus:underline transition ease-in-out duration-150">
+                                            View my GitHub profile
                                         </p>
                                     </div>
                                 </div>
@@ -147,95 +98,31 @@ export const LayoutComponent = ({children, header}) => {
 
             <div className="hidden md:flex md:flex-shrink-0">
                 <div className="flex flex-col w-64">
-                    <div className="flex flex-col h-0 flex-1 bg-indigo-800">
+                    <div className="flex flex-col h-0 flex-1 bg-orange-800">
                         <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                             <div className="flex items-center flex-shrink-0 px-4">
                                 <img className="h-8 w-auto"
-                                     src="https://tailwindui.com/img/logos/workflow-logo-on-brand.svg" alt="Workflow"/>
+                                     src="https://dev.rubeen.dev/assets/images/rubeen.png" alt="Rubeen"/>
                             </div>
-                            <nav className="mt-5 flex-1 px-2 bg-indigo-800 space-y-1">
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-white rounded-md bg-indigo-900 focus:outline-none focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
-                                    </svg>
-                                    Dashboard
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
-                                    </svg>
-                                    Team
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
-                                    </svg>
-                                    Projects
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                                    </svg>
-                                    Calendar
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"/>
-                                    </svg>
-                                    Documents
-                                </a>
-
-                                <a href="#"
-                                   className="group flex items-center px-2 py-2 text-sm leading-5 font-medium text-indigo-300 rounded-md hover:text-white hover:bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-700 transition ease-in-out duration-150">
-                                    <svg
-                                        className="mr-3 h-6 w-6 text-indigo-400 group-hover:text-indigo-300 group-focus:text-indigo-300 transition ease-in-out duration-150"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-                                              d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                                    </svg>
-                                    Reports
-                                </a>
+                            <nav className="mt-5 flex-1 px-2 bg-orange-800 space-y-1">
+                                {MenuList.map(item => {
+                                    return <a href={item.url}
+                                              className={`group flex items-center px-2 py-2 text-sm leading-5 font-medium ${(item.url === route) ? 'text-white bg-orange-900' : 'text-orange-300 hover:text-white hover:bg-orange-700'} rounded-md focus:outline-none focus:bg-orange-700 transition ease-in-out duration-150`}>
+                                        <svg
+                                            className="mr-3 h-6 w-6 text-orange-400 group-focus:text-orange-300 transition ease-in-out duration-150"
+                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">{item.icon}</svg>
+                                        {item.name}
+                                    </a>
+                                })}
                             </nav>
                         </div>
-                        <div className="flex-shrink-0 flex border-t border-indigo-700 p-4">
-                            <a href="#" className="flex-shrink-0 w-full group block">
+                        <div className="flex-shrink-0 flex border-t border-orange-700 p-4">
+                            <a href="https://github.com/rubenvitt" className="flex-shrink-0 w-full group block">
                                 <div className="flex items-center">
                                     <div>
                                         <img className="inline-block h-9 w-9 rounded-full"
-                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                             src="https://dev.rubeen.dev/assets/images/profile.jpg"
                                              alt=""/>
-                                    </div>
-                                    <div className="ml-3">
-                                        <p className="text-sm leading-5 font-medium text-white">
-                                            Tom Cook
-                                        </p>
-                                        <p className="text-xs leading-4 font-medium text-indigo-300 group-hover:text-indigo-100 transition ease-in-out duration-150">
-                                            View profile
-                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -248,7 +135,7 @@ export const LayoutComponent = ({children, header}) => {
                     <button onClick={() => toggleMenu()}
                             className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150"
                             aria-label="Open sidebar">
-                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="red">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
                                   d="M4 6h16M4 12h16M4 18h16"/>
                         </svg>
