@@ -77,7 +77,7 @@ export const LayoutComponent = ({children, header}) => {
                                     <div>
                                         <img className="inline-block h-10 w-10 rounded-full"
                                              src="https://dev.rubeen.dev/assets/images/profile.jpg"
-                                             alt=""/>
+                                             alt="Rubeen"/>
                                     </div>
                                     <div className="ml-3">
                                         <p className="text-base leading-6 font-medium text-white">
@@ -122,7 +122,7 @@ export const LayoutComponent = ({children, header}) => {
                                     <div>
                                         <img className="inline-block h-9 w-9 rounded-full"
                                              src="https://dev.rubeen.dev/assets/images/profile.jpg"
-                                             alt=""/>
+                                             alt="Rubeen"/>
                                     </div>
                                 </div>
                             </a>

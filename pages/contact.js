@@ -12,7 +12,7 @@ export default function Home({titleSetter}) {
                     <h2 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
                         Contact me
                     </h2>
-                    <p className="mt-4 text-lg leading-6 text-gray-500">
+                    <p className="mt-4 text-lg leading-6 text-gray-700">
                         This contact form is not usable, but should show you, what's my intention for a real portfolio website.
                     </p>
                 </div>
@@ -53,7 +53,7 @@ export default function Home({titleSetter}) {
                         <div className="sm:col-span-2">
           <span className="w-full inline-flex rounded-md shadow-sm">
             <button type="button" onClick={() => alert("Hello, " + name)}
-                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange-600 hover:bg-orange-500 focus:outline-none focus:border-orange-700 focus:shadow-outline-orange active:bg-orange-700 transition ease-in-out duration-150">
+                    className="w-full inline-flex items-center justify-center px-6 py-3 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-orange-700 hover:bg-orange-500 focus:outline-none focus:border-orange-700 focus:shadow-outline-orange active:bg-orange-700 transition ease-in-out duration-150">
               Get in touch
             </button>
           </span>
